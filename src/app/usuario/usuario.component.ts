@@ -35,8 +35,10 @@ export class UsuarioComponent implements OnInit {
   pesquisar() {
     this.usuarioService.getUserByLogin(this.formUsuario.controls.login.value)
       .subscribe(resp=>{
-          this.dataSource.push(resp)
-          this.mytable.renderRows();
+          if(!this.dataSource.find(item => item.id === resp.id)){
+            this.dataSource.push(resp)
+            this.mytable.renderRows();
+          }
     }, error=> {
       console.log(error)
       swal('Ops!', 'Usuário não encontrado', 'error')
