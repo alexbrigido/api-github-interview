@@ -5,6 +5,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatTable, MatDialog } from '@angular/material';
 import { DialogRepositorioComponent } from '../dialog-repositorio/dialog-repositorio.component';
 import { DialogStarredComponent } from '../dialog-starred/dialog-starred.component';
+import { SweetAlert } from 'sweetalert/typings/core';
+import * as _swal from 'sweetalert';
+const swal: SweetAlert = _swal as any;
 
 @Component({
   selector: 'app-usuario',
@@ -33,17 +36,17 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.getUserByLogin(this.formUsuario.controls.login.value)
       .subscribe(resp=>{
           this.dataSource.push(resp)
+          this.mytable.renderRows();
     }, error=> {
       console.log(error)
-    }, () => {
-      this.mytable.renderRows();
+      swal('Ops!', 'Usuário não encontrado', 'error')
     })
   }
 
   openDialogRepo(usuario: Usuario): void {
     const dialogRef = this.dialog.open(DialogRepositorioComponent, {
-        width: '70%',
-        height: '80%',
+        width: '60%',
+        height: '50%',
         data: usuario
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -53,8 +56,8 @@ export class UsuarioComponent implements OnInit {
 
   openDialogStarred(usuario: Usuario): void {
     const dialogRef = this.dialog.open(DialogStarredComponent, {
-      width: '70%',
-      height: '80%',
+      width: '60%',
+      height: '50%',
       data: usuario
     });
     dialogRef.afterClosed().subscribe(result => {

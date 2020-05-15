@@ -1,19 +1,18 @@
-
-<mat-toolbar>Usuários GitHub</mat-toolbar>
-
-<form [formGroup]="formUsuario">
-  <div class="example-container">
-    <mat-form-field appearance="fill">
-      <mat-label>Usuário</mat-label>
-      <input matInput formControlName="login">
-    </mat-form-field>
-
-    <button  mat-button color="primary" (click)="pesquisar()">
-      Pesquisar
-    </button>
-  </div>
-
-</form>
+<div class="container">
+  <mat-toolbar>Usuários GitHub</mat-toolbar>
+  <form [formGroup]="formUsuario">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Usuário</mat-label>
+        <input matInput formControlName="login">
+      </mat-form-field>
+  
+      <button mat-button color="primary" (click)="pesquisar()">
+        Pesquisar
+      </button>
+    </div>
+  </form>
+</div>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #mytable>
 
