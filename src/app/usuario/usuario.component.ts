@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../models/usuario.model';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatTable } from '@angular/material';
+import { MatTable, MatDialog } from '@angular/material';
+import { DialogRepositorioComponent } from '../dialog-repositorio/dialog-repositorio.component';
+import { DialogStarredComponent } from '../dialog-starred/dialog-starred.component';
 
 @Component({
   selector: 'app-usuario',
@@ -11,7 +13,8 @@ import { MatTable } from '@angular/material';
 })
 export class UsuarioComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService,
+    public dialog: MatDialog) { }
 
   @ViewChild(MatTable, {read: false}) mytable: MatTable<any>;
 
@@ -37,4 +40,25 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
+  openDialogRepo(usuario: Usuario): void {
+    const dialogRef = this.dialog.open(DialogRepositorioComponent, {
+        width: '70%',
+        height: '80%',
+        data: usuario
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        
+      });
+  }
+
+  openDialogStarred(usuario: Usuario): void {
+    const dialogRef = this.dialog.open(DialogStarredComponent, {
+      width: '70%',
+      height: '80%',
+      data: usuario
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
 }

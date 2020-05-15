@@ -13,6 +13,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { DialogRepositorioComponent } from './dialog-repositorio/dialog-repositorio.component';
+import { DialogStarredComponent } from './dialog-starred/dialog-starred.component';
 
 let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -20,7 +22,9 @@ let options: Partial<IConfig> | (() => Partial<IConfig>);
   declarations: [
     AppComponent,
     SafePipe,
-    UsuarioComponent
+    UsuarioComponent,
+    DialogRepositorioComponent,
+    DialogStarredComponent
   ],
   imports: [
     StorageServiceModule,
@@ -45,6 +49,8 @@ let options: Partial<IConfig> | (() => Partial<IConfig>);
     NgxMaskModule.forRoot(options)
   ],
   entryComponents: [
+    DialogRepositorioComponent,
+    DialogStarredComponent
   ],
   providers: [
     HttpClientModule

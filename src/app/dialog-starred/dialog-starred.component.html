@@ -1,0 +1,7 @@
+<h2>User Endpoints</h2>
+
+<mat-list role="list" *ngFor="let item of dataSource">
+  <mat-list-item role="listitem">{{item.url}}</mat-list-item>
+  <mat-list-item role="listitem">{{item.repos_url}}</mat-list-item>
+  <mat-list-item role="listitem">{{item.starred_url}}</mat-list-item>
+</mat-list>
