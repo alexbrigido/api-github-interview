@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../models/usuario.model';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTable, MatDialog } from '@angular/material';
 import { DialogRepositorioComponent } from '../dialog-repositorio/dialog-repositorio.component';
 import { DialogStarredComponent } from '../dialog-starred/dialog-starred.component';
@@ -25,7 +25,7 @@ export class UsuarioComponent implements OnInit {
   displayedColumns: string[] = ['login', 'id', 'repo', 'starred'];
 
   formUsuario: FormGroup = new FormGroup({
-      login: new FormControl()
+      login: new FormControl('', Validators.required)
     }
   );
 
@@ -48,11 +48,11 @@ export class UsuarioComponent implements OnInit {
   openDialogRepo(usuario: Usuario): void {
     const dialogRef = this.dialog.open(DialogRepositorioComponent, {
         width: '60%',
-        height: '50%',
-        data: usuario
+        height: '70%',
+        data: usuario.repos_url
       });
       dialogRef.afterClosed().subscribe(result => {
-        
+        // do nothing
       });
   }
 
@@ -63,7 +63,7 @@ export class UsuarioComponent implements OnInit {
       data: usuario
     });
     dialogRef.afterClosed().subscribe(result => {
-      
+      // do nothing
     });
   }
 }

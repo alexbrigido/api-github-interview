@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Usuario } from '../models/usuario.model';
+import { Repositorio } from '../models/repositorio.model';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-dialog-repositorio',
@@ -10,12 +11,18 @@ import { Usuario } from '../models/usuario.model';
 export class DialogRepositorioComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<DialogRepositorioComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private usuarioService: UsuarioService) { }
 
-  dataSource: Usuario[] = []
+  dataSource: Repositorio[] = []
+  displayedColumns: string[] = ['id', 'name', 'full_name']
 
   ngOnInit() {
-    this.dataSource.push(this.data)
+    this.usuarioService.getReposUser(this.data).subscribe(resp=>{
+      this.dataSource = resp
+    }, error => {
+      console.log(error)
+    })
   }
 
 }

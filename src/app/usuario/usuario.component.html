@@ -5,9 +5,10 @@
       <mat-form-field appearance="fill">
         <mat-label>Usuário</mat-label>
         <input matInput formControlName="login">
+        <mat-error>Usuário é obrigatório</mat-error>
       </mat-form-field>
   
-      <button mat-stroked-button color="primary" (click)="pesquisar()">
+      <button mat-stroked-button color="primary" (click)="pesquisar()" [disabled]="formUsuario.invalid">
         Pesquisar
       </button>
     </div>
