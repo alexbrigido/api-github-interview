@@ -1,5 +1,5 @@
 {
-  "name": "controle-carga-app",
+  "name": "api-github-interview",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
